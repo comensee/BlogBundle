@@ -34,7 +34,16 @@ class Post
      * @ORM\Column(name="title", type="string", length=255)
      */
     private $title = '';
-
+    
+    /**
+     * Post subtitle
+     *
+     * @var string $subtitle
+     * @Assert\NotBlank()
+     * @ORM\Column(name="subtitle", type="string", length=255)
+     */
+    private $subtitle = '';
+    
     /**
      * @var string $slug
      *
@@ -314,5 +323,64 @@ class Post
     public function __toString()
     {
         return $this->getTitle();
+    }
+
+    /**
+     * Set subtitle
+     *
+     * @param string $subtitle
+     * @return Post
+     */
+    public function setSubtitle($subtitle)
+    {
+        $this->subtitle = $subtitle;
+    
+        return $this;
+    }
+
+    /**
+     * Get subtitle
+     *
+     * @return string 
+     */
+    public function getSubtitle()
+    {
+        return $this->subtitle;
+    }
+
+    /**
+     * Set textAsHtml
+     *
+     * @param string $textAsHtml
+     * @return Post
+     */
+    public function setTextAsHtml($textAsHtml)
+    {
+        $this->textAsHtml = $textAsHtml;
+    
+        return $this;
+    }
+
+    /**
+     * Add tags
+     *
+     * @param \Stfalcon\Bundle\BlogBundle\Entity\Tag $tags
+     * @return Post
+     */
+    public function addTag(\Stfalcon\Bundle\BlogBundle\Entity\Tag $tags)
+    {
+        $this->tags[] = $tags;
+    
+        return $this;
+    }
+
+    /**
+     * Remove tags
+     *
+     * @param \Stfalcon\Bundle\BlogBundle\Entity\Tag $tags
+     */
+    public function removeTag(\Stfalcon\Bundle\BlogBundle\Entity\Tag $tags)
+    {
+        $this->tags->removeElement($tags);
     }
 }

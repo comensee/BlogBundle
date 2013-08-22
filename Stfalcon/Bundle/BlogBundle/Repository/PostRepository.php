@@ -55,5 +55,28 @@ class PostRepository extends EntityRepository
 
         return $query->getResult();
     }
+    
+    /**
+     * Get last posts
+     *
+     * @param integer $count Max count of returned posts
+     *
+     * @return array
+     */
+    public function getPreviousPost($current_id = null)
+    {
+        $previous_id = $current_id - 1 ;//UGLY !!!
+        $query = $this->getEntityManager()->createQuery('
+            SELECT
+                p
+            FROM
+                StfalconBlogBundle:Post p
+            WHERE p.id = :id
+            ORDER BY
+                p.created DESC
+            ')->setParameter('id', $previous_id);
 
+
+        return $query->getSingleResult();
+    }
 }

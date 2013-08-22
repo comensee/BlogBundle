@@ -105,4 +105,27 @@ class Tag
     {
         return $this->getText();
     }
+
+    /**
+     * Add posts
+     *
+     * @param \Stfalcon\Bundle\BlogBundle\Entity\Post $posts
+     * @return Tag
+     */
+    public function addPost(\Stfalcon\Bundle\BlogBundle\Entity\Post $posts)
+    {
+        $this->posts[] = $posts;
+    
+        return $this;
+    }
+
+    /**
+     * Remove posts
+     *
+     * @param \Stfalcon\Bundle\BlogBundle\Entity\Post $posts
+     */
+    public function removePost(\Stfalcon\Bundle\BlogBundle\Entity\Post $posts)
+    {
+        $this->posts->removeElement($posts);
+    }
 }

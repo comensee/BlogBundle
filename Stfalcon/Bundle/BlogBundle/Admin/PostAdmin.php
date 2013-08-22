@@ -11,6 +11,7 @@ class PostAdmin extends Admin
     {
         $formMapper
             ->add('title')
+            ->add('subtitle')
             ->add('slug')
             ->add('text')
             ->add('tags', 'tags')
